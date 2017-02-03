@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallShopFrame", "SmallShopFrame\SmallShopFrame.csproj", "{950989F0-E1A3-4790-9E62-E9D410AC46FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallShopFrame.Tests", "SmallShopFrame.Tests\SmallShopFrame.Tests.csproj", "{C661E281-17A6-48E4-8D98-1ED2E5F60FC5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{950989F0-E1A3-4790-9E62-E9D410AC46FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{950989F0-E1A3-4790-9E62-E9D410AC46FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{950989F0-E1A3-4790-9E62-E9D410AC46FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{950989F0-E1A3-4790-9E62-E9D410AC46FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C661E281-17A6-48E4-8D98-1ED2E5F60FC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C661E281-17A6-48E4-8D98-1ED2E5F60FC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C661E281-17A6-48E4-8D98-1ED2E5F60FC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C661E281-17A6-48E4-8D98-1ED2E5F60FC5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
