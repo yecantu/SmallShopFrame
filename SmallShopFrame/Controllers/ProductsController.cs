@@ -14,16 +14,15 @@ namespace SmallShopFrame.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var products = db.FindAllProducts();
-            return View();
+            var products = db.FindAllProducts().ToList();
+            return View("Index", products);
         }
 
         //GET: Products/Details/Id
         public ActionResult Details (int id)
         {
             Product product = db.GetProduct(id);
-
-            return View();
+            return View("Details", product);
         }
     }
 }
