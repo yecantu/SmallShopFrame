@@ -31,7 +31,10 @@
         <li>Description: @Html.Encode(Model.Description)</li>
     </ul> 
     
-    <input type="button" value="Add to Cart" />
+    @{ Html.BeginForm(); }
+    <input type="submit" value="Add to Cart" />
+    @{ Html.EndForm(); }
+
 </div>
 
 
