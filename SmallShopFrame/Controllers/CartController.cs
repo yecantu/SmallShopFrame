@@ -15,7 +15,17 @@ namespace SmallShopFrame.Controllers
         public ActionResult Index()
         {
             //Take to user cart
-            return View("NotFound");
+            // Make this it's own method or file    
+            HttpCookie cartId = Request.Cookies["cart"];
+            if (cartId == null)
+            {
+                //assign cookie
+            }
+
+            var x = db.GetUserCart(cartId["id"]).ToList() ;
+
+            return View(x);
+            //return View("NotFound");
         }
     }
 }

@@ -16,11 +16,12 @@ namespace SmallShopFrame.Controllers
         public ActionResult Index()
         {
             var products = db.FindAllProducts().ToList();
-            /* //Make Cookie
+             //Make Cookie
             HttpCookie cartId = new HttpCookie("cart");
-            cartId["id"] = "5000";
+            Guid id = Guid.NewGuid(); //Test if guid already exists in database
+            cartId["id"] = id.ToString(); //Use Guid() to generate a unique id, check if guid will be unique in database if so then store this id
             cartId.Expires = DateTime.Now.AddDays(5);
-            Response.Cookies.Add(cartId); */
+            Response.Cookies.Add(cartId); 
             return View("Index", products);
         }
 
@@ -34,7 +35,7 @@ namespace SmallShopFrame.Controllers
         //POST: Products/Details/Id
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Details(int id, FormCollection formValues)
-        {
+        { 
             // Add Item to cart
             Product product = db.GetProduct(id);
 
@@ -46,16 +47,7 @@ namespace SmallShopFrame.Controllers
             }
                 //Add item to cart
                 Cart x = new Cart();
-                int y;
-                if(Int32.TryParse(cartId["id"], out y))
-                {
-                    // x.CartId = y;
-                    // Have system issue persistent unique id's
-                }
-                else
-                {
-
-                }
+                x.CartId = cartId["id"];
                 x.ProductId = product.Id;
                 x.Quantity = 3;
                 dbC.AddCart(x);

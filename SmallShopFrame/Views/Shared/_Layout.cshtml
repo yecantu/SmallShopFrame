@@ -4,6 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - SmallShopFrame</title>
+
+    
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -47,6 +50,9 @@
             <li>@Html.ActionLink("Home", "Index", "Home")</li>
             <li>Products</li>
             <li>About</li>
+            <li>
+                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+            </li>
         </ul>
     </div>
  @*   <div class="navbar navbar-inverse navbar-fixed-top">

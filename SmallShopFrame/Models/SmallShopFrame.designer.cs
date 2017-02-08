@@ -325,11 +325,13 @@ namespace SmallShopFrame.Models
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _CartId;
+		private string _CartId;
 		
 		private int _ProductId;
 		
 		private int _Quantity;
+		
+		private int _Id;
 		
 		private EntityRef<Product> _Product;
 		
@@ -337,12 +339,14 @@ namespace SmallShopFrame.Models
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnCartIdChanging(int value);
+    partial void OnCartIdChanging(string value);
     partial void OnCartIdChanged();
     partial void OnProductIdChanging(int value);
     partial void OnProductIdChanged();
     partial void OnQuantityChanging(int value);
     partial void OnQuantityChanged();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
     #endregion
 		
 		public Cart()
@@ -351,8 +355,8 @@ namespace SmallShopFrame.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CartId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int CartId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CartId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string CartId
 		{
 			get
 			{
@@ -411,6 +415,26 @@ namespace SmallShopFrame.Models
 					this._Quantity = value;
 					this.SendPropertyChanged("Quantity");
 					this.OnQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
 				}
 			}
 		}

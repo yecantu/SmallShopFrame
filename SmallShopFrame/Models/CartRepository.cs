@@ -10,12 +10,17 @@ namespace SmallShopFrame.Models
         private SmallShopFrameDataContext db = new SmallShopFrameDataContext();
 
         //Query Methods
-        public IQueryable<Cart> GetCart(int id)
+        public IQueryable<Cart> GetUserCart(string id)
         {
             return from Cart in db.Carts
                    where Cart.CartId == id
                    select Cart;
         }
+
+       /* public Cart GetItemInCart(int id)
+        {
+            //Get one particular item in cart
+        } */
 
         //Add and Delete Methods
         public void AddCart(Cart x)
