@@ -16,12 +16,12 @@ namespace SmallShopFrame.Controllers
         public ActionResult Index()
         {
             var products = db.FindAllProducts().ToList();
-             //Make Cookie
+          /*   //Make Cookie
             HttpCookie cartId = new HttpCookie("cart");
             Guid id = Guid.NewGuid(); //Test if guid already exists in database
             cartId["id"] = id.ToString(); //Use Guid() to generate a unique id, check if guid will be unique in database if so then store this id
             cartId.Expires = DateTime.Now.AddDays(5);
-            Response.Cookies.Add(cartId); 
+            Response.Cookies.Add(cartId); */
             return View("Index", products);
         }
 

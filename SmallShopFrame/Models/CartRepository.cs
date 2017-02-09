@@ -17,10 +17,24 @@ namespace SmallShopFrame.Models
                    select Cart;
         }
 
-       /* public Cart GetItemInCart(int id)
+        public bool IdExist(string id)
         {
-            //Get one particular item in cart
-        } */
+            return ((from Cart in db.Carts
+                   where Cart.CartId == id
+                   select Cart).Count() == 0) ? true : false;
+        }
+
+        public int GetCartSize(string id)
+        {
+            return (from Cart in db.Carts
+                     where Cart.CartId == id
+                     select Cart).Count();
+        }
+
+        /* public Cart GetItemInCart(int id)
+         {
+             //Get one particular item in cart
+         } */
 
         //Add and Delete Methods
         public void AddCart(Cart x)

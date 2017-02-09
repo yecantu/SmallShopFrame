@@ -22,7 +22,8 @@ namespace SmallShopFrame.Controllers
                 //assign cookie
             }
 
-            var x = db.GetUserCart(cartId["id"]).ToList() ;
+            // var x = db.GetUserCart(cartId["id"]).ToList() ;
+            CartViewModel x = new CartViewModel(cartId["id"]);
 
             return View(x);
             //return View("NotFound");
