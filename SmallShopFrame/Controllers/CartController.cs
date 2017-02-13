@@ -10,23 +10,22 @@ namespace SmallShopFrame.Controllers
     public class CartController : Controller
     {
         private CartRepository db = new CartRepository();
+        private Cookie cookie = new Cookie();
 
         // GET: Cart
         public ActionResult Index()
         {
             //Take to user cart
-            // Make this it's own method or file    
-            HttpCookie cartId = Request.Cookies["cart"];
-            if (cartId == null)
-            {
-                //assign cookie
-            }
+            HttpCookie cartId;
 
-            // var x = db.GetUserCart(cartId["id"]).ToList() ;
+            if (Request.Cookies[cookie.name] == null)
+                Response.Cookies.Add(cookie.returnNewCookie());
+
+            cartId = Request.Cookies[cookie.name];
+
             CartViewModel x = new CartViewModel(cartId["id"]);
 
             return View(x);
-            //return View("NotFound");
         }
     }
 }

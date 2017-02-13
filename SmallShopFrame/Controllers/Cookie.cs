@@ -8,19 +8,19 @@ namespace SmallShopFrame.Controllers
 {
    public class Cookie
     {
-        HttpCookie cookie;
-        CartRepository dbc;
+        public HttpCookie cookie { get; private set; }
+        private CartRepository dbc;
+        public string name { get; private set; }
 
-        Cookie()
+        public Cookie()
         {
-            cookie = new HttpCookie("cart");
+            name = "cart";
+            cookie = new HttpCookie(name);
             dbc = new CartRepository();
         }
 
-        void makeCookie()
+        public void makeCookie()
         {
-            //Make Cookie
-         //   cookie = new HttpCookie("cart");
             Guid id = Guid.NewGuid(); //Test if guid already exists in database
 
             while(!dbc.IdExist(id.ToString()))
@@ -28,18 +28,25 @@ namespace SmallShopFrame.Controllers
                 id = Guid.NewGuid();
             }
 
-            cookie["id"] = id.ToString(); //Use Guid() to generate a unique id, check if guid will be unique in database if so then store this id
+            cookie["id"] = id.ToString(); 
             cookie.Expires = DateTime.Now.AddDays(5);
-          /*  if (dbc.IdExist(id.ToString()))
-            {
-
-            }
-            else
-            {
-
-            }*/
-        
-            //  Response.Cookies.Add(cartId);
         }
+
+        public HttpCookie returnNewCookie()
+        {
+            Guid id = Guid.NewGuid(); //Test if guid already exists in database
+
+            while (!dbc.IdExist(id.ToString()))
+            {
+                id = Guid.NewGuid();
+            }
+
+            cookie["id"] = id.ToString();
+            cookie.Expires = DateTime.Now.AddDays(5);
+
+            return cookie;
+        }
+
+
     }
 }

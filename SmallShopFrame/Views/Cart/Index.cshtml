@@ -4,20 +4,34 @@
     ViewBag.Title = "Index";
 }
 
-<h2>My Cart</h2>
+<style>
+       img{
+        height: 25%;
+        width: 25%;
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+       td:first-of-type{
+           width: 200px;
+       }
+
+</style>
+<h2>My Cart</h2>
 
 <table class="table">
     <tr>
-        <th></th>
+        <th>Image</th>
+        <th>Description</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
     </tr>
 
     @foreach (var x in Model.cart)
     {
         <tr>
+            <td>
+                <img src="@x.Image" />
+            </td>
             <td>
                 @Html.Encode(x.Description)
             </td>
@@ -27,12 +41,28 @@
             <td>
                 @Html.Encode(x.Price)
             </td>
+            <td>
+                A dropdown will go here
+            </td>
         </tr>
     }
 
+    <tfoot>
+        <tr>
+            <td>
+                Total Price: 
+            </td>
+            <td>
+                <p>@Model.total</p>
+            </td>
+        </tr>
+    </tfoot>
+
 </table>
 
-<p>@Model.total</p>
+@{ Html.BeginForm(); }
+<input type="submit" value="Checkout" />
+@{ Html.EndForm(); }
 
 
 @*<table class="table">

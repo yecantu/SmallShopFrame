@@ -11,17 +11,16 @@ namespace SmallShopFrame.Controllers
     {
         private ProductRepository db = new ProductRepository();
         private CartRepository dbC = new CartRepository();
+        private Cookie cookie = new Cookie();
 
         // GET: Products
         public ActionResult Index()
         {
             var products = db.FindAllProducts().ToList();
-          /*   //Make Cookie
-            HttpCookie cartId = new HttpCookie("cart");
-            Guid id = Guid.NewGuid(); //Test if guid already exists in database
-            cartId["id"] = id.ToString(); //Use Guid() to generate a unique id, check if guid will be unique in database if so then store this id
-            cartId.Expires = DateTime.Now.AddDays(5);
-            Response.Cookies.Add(cartId); */
+
+            if (Request.Cookies[cookie.name] == null)
+                Response.Cookies.Add(cookie.returnNewCookie());
+
             return View("Index", products);
         }
 
@@ -40,22 +39,23 @@ namespace SmallShopFrame.Controllers
             Product product = db.GetProduct(id);
 
             // Make this it's own method or file    
-            HttpCookie cartId = Request.Cookies["cart"];
-            if(cartId == null)
-            {
-                //assign cookie
-            }
-                //Add item to cart
-                Cart x = new Cart();
-                x.CartId = cartId["id"];
-                x.ProductId = product.Id;
-                x.Quantity = 3;
-                dbC.AddCart(x);
-                dbC.Save();
+            HttpCookie cartId;
+
+            if (Request.Cookies[cookie.name] == null)
+                Response.Cookies.Add(cookie.returnNewCookie());
+
+            cartId = Request.Cookies[cookie.name];
+
+            //Add item to cart
+            Cart x = new Cart();
+            x.CartId = cartId["id"];
+            x.ProductId = product.Id;
+            x.Quantity = 3;
+            dbC.AddCart(x);
+            dbC.Save();
             
             // Do some Javascript confirmation
             return View(product);
-
         }
     }
 }
